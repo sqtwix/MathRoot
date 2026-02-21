@@ -33,8 +33,7 @@ MathRoot это приложение на Java, которое находит к
    ```bash
    mvn clean install
   ```
-
-
+  
 3. Usage
 
 Run the Main class:
