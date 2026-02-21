@@ -29,7 +29,7 @@ public  class  BisectionMethod {
             fa = expr.setVariable("x", a).evaluate();
             fb = expr.setVariable("x", b).evaluate();
         } catch (Exception ex) {
-            System.out.println("Ошибка вычисления: " + ex.getMessage());
+            System.out.println("ERROR. Ошибка вычисления: " + ex.getMessage());
             return;
         }
 
