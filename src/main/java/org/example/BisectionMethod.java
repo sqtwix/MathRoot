@@ -53,15 +53,12 @@ public  class  BisectionMethod {
             System.out.println("Правая граница: " + b);
 
             double c = (a + b) / 2;
-
-            System.out.printf("Серединная координата x%d = %f", index, c);
-
             double fc = expr.setVariable("x", c).evaluate();
 
-            System.out.printf("\nЗначение функции f(x%d)=f(%f)= %f \n", index, c, fc);
-
+            // если модуль функции маленький — это хороший кандидат на корень
             if (Math.abs(fc) < epsilon) {
-                System.out.println("\nТОЧНЫЙ КОРЕНЬ НАЙДЕН: " + c);
+                answer = c;
+                System.out.println("\nТОЧНЫЙ КОРЕНЬ НАЙДЕН (по значению функции): " + c);
                 break;
             }
 
@@ -73,7 +70,7 @@ public  class  BisectionMethod {
                 fa = fc;
             }
 
-            answer = c;
+            answer = (a + b) / 2;
             index++;
         }
 
