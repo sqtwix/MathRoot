@@ -3,13 +3,13 @@ package org.example;
 import net.objecthunter.exp4j.Expression;
 import net.objecthunter.exp4j.ExpressionBuilder;
 
-public class СhordMethod {
+public class ChordMethod {
     // Class for findind root of equation by chord method
 
-    public СhordMethod() {
+    public ChordMethod() {
     }
 
-    public void printRoot(String equation, double a, double b, double epsilon) {
+    public static void printRoot(String equation, double a, double b, double epsilon) {
         if (equation == null || equation.trim().isEmpty()) {
             System.out.println("ERROR. Уравнение пустое");
         }
@@ -115,7 +115,7 @@ public class СhordMethod {
         }
     }
 
-    private double safeEvaluate(Expression expr, double val) {
+    public static double safeEvaluate(Expression expr, double val) {
         try {
             return expr.setVariable("x", val).evaluate();
         } catch (Exception e) {

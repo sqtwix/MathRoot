@@ -3,7 +3,7 @@ package org.example;
 import net.objecthunter.exp4j.Expression;
 import net.objecthunter.exp4j.ExpressionBuilder;
 
-public  class  BisectionMethod {
+public class BisectionMethod {
 
     // Class for finding root of equation by bisection method
     public BisectionMethod() { }
