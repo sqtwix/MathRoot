@@ -6,7 +6,8 @@ import net.objecthunter.exp4j.ExpressionBuilder;
 public class СhordMethod {
     // Class for findind root of equation by chord method
 
-    public СhordMethod() { }
+    public СhordMethod() {
+    }
 
     public void printRoot(String equation, double a, double b, double epsilon) {
         if (equation == null || equation.trim().isEmpty()) {
@@ -38,7 +39,7 @@ public class СhordMethod {
             return;
         }
 
-        if (Math.abs(fa) < epsilon){
+        if (Math.abs(fa) < epsilon) {
             printResult(a, fa, 0, "a");
             return;
         }
@@ -57,57 +58,69 @@ public class СhordMethod {
                 "№", "x", "f(x)", "Δx", "фиксир.", "действие");
 
         int iteration = 0;
-        double x;
-
-
+        double prevX = b;
 
         while (true) {
             iteration++;
 
-            if (fa * fb <= 0) {
-                x = x = b - fb * (b - a) / (fb - fa);
+            double x;
+            String fixed = "";
+
+            if (fixed.equals("a")) {
+                // фиксирована точка a → хорда от a к b
+                x = b - fb * (b - a) / (fb - fa);
+            } else if (fixed.equals("b")) {
+                // фиксирована точка b → хорда от b к a
+                x = a - fa * (b - a) / (fb- fa);
             } else {
-                System.out.println("Знаки стали одинаковыми — ошибка логики");
-                break;
+                // первая итерация — без фиксированной точки, берём любую
+                x = b - fb * (b - a) / (fb - fa);
             }
 
-            double fx;
-            try {
-                fx = expr.setVariable("x", x).evaluate();
-            } catch (Exception e) {
-                System.out.println("Ошибка вычисления в точке " + x);
-                return;
-            }
+            double fx = safeEvaluate(expr, x);
+            if (Double.isNaN(fx)) return;
 
-            double delta = Math.abs(x - b);
+            double delta = Math.abs(x - prevX);
+            prevX = x;
 
-            String fixedPoint = (fa * fx < 0) ? "a" : "b";
-            String action = (fa * fx < 0) ? "b → x" : "a → x";
+            String currentFixed = fixed;
 
-            System.out.printf("%-4d %-14.10f %-18.10e %-12.2e %-10s %-10s\n",
-                    iteration, x, fx, delta, fixedPoint, action);
-
-            if (Math.abs(fx) < epsilon || Math.abs(x - b) < epsilon || Math.abs(x - a) < epsilon) {
-                printResult(x, fx, iteration, fixedPoint);
-                return;
-            }
-
-            // Обновляем только ту границу, у которой знак совпадает со знаком в новой точке
             if (fa * fx < 0) {
-                // корень между a и x → фиксируем a, двигаем b
+                // корень лежит между a и x → фиксируем a, двигаем b
                 b = x;
                 fb = fx;
+                fixed = "a";
             } else {
-                // корень между x и b → фиксируем b, двигаем a
+                // корень лежит между x и b → фиксируем b, двигаем a
                 a = x;
                 fa = fx;
+                fixed = "b";
+            }
+
+            String action = fixed.equals("a") ? "фиксируем a, двигаем b" : "фиксируем b, двигаем a";
+
+            System.out.printf("%-5d %-14.10f %-18.10e %-14.2e %-10s %-25s\n",
+                    iteration, x, fx, delta, currentFixed.isEmpty() ? "—" : currentFixed, action);
+
+            if (Math.abs(fx) < epsilon || delta < epsilon) {
+                printResult(x, fx, iteration, fixed);
+                return;
             }
 
             if (iteration > 1000) {
-                System.out.println("!!!Превышено максимальное число итераций!!!");
-                printResult(x, fx, iteration, "—");
+                System.out.println("!!! Превышено максимальное число итераций !!!");
+                printResult(x, fx, iteration, fixed);
                 return;
             }
+        }
+    }
+
+    private double safeEvaluate(Expression expr, double val) {
+        try {
+            return expr.setVariable("x", val).evaluate();
+        } catch (Exception e) {
+            System.out.println("Ошибка вычисления в точке " + val + ": " + e.getMessage());
+            return Double.NaN;
         }
     }
 
