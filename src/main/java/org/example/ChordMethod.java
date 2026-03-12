@@ -130,7 +130,7 @@ public class ChordMethod {
         System.out.println("-".repeat(70));
         System.out.println("Результат:");
         System.out.printf("  Корень:              %.10f\n", x);
-        System.out.printf("  f(x) ≈               %.2e\n", fx);
+        System.out.printf("  f(x) =               %.2e\n", fx);
         System.out.printf("  Итераций:            %d\n", iter);
         System.out.printf("  Последний фиксированный конец: %s\n", fixed);
         System.out.println("=".repeat(70));
