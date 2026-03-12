@@ -59,13 +59,14 @@ public class СhordMethod {
         int iteration = 0;
         double x;
 
+
+
         while (true) {
             iteration++;
 
             if (fa * fb <= 0) {
                 x = x = b - fb * (b - a) / (fb - fa);
             } else {
-                // это уже не должно происходить, но на всякий случай
                 System.out.println("Знаки стали одинаковыми — ошибка логики");
                 break;
             }
