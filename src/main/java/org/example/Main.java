@@ -6,9 +6,9 @@ public class Main {
     public static void main(String[] args) {
         Scanner sc = new Scanner(System.in);
 
-        System.out.printf("Выберите метод решения: \n " +
+        System.out.printf("Выберите метод решения: \n" +
                 "1. Метод бисекции \n" +
-                "2. Метод хорд");
+                "2. Метод хорд \n");
 
         System.out.print("Ваш выбор: ");
 
@@ -27,6 +27,7 @@ public class Main {
                 break;
 
             case 2:
+                chordSolving();
                 break;
 
             default:

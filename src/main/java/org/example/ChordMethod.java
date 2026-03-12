@@ -10,6 +10,8 @@ public class ChordMethod {
     }
 
     public static void printRoot(String equation, double a, double b, double epsilon) {
+        equation = equation.replace(',', '.');
+
         if (equation == null || equation.trim().isEmpty()) {
             System.out.println("ERROR. Уравнение пустое");
         }
