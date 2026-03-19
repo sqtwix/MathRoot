@@ -8,7 +8,8 @@ public class Main {
 
         System.out.printf("Выберите метод решения: \n" +
                 "1. Метод бисекции \n" +
-                "2. Метод хорд \n");
+                "2. Метод хорд \n" +
+                "3. Метод касательной \n");
 
         System.out.print("Ваш выбор: ");
 
@@ -29,6 +30,9 @@ public class Main {
             case 2:
                 chordSolving();
                 break;
+
+            case 3:
+                tangentSolving();
 
             default:
                 System.out.println("ERROR. invalid input");
@@ -125,6 +129,52 @@ public class Main {
 
         if (inputValid) {
             ChordMethod.printRoot(equation, a, b, epsilon);
+        } else {
+            System.out.println("Программа завершена из-за ошибок ввода.");
+        }
+
+        sc.close();
+    }
+
+    public static void tangentSolving(){
+        Scanner sc = new Scanner(System.in);
+
+        System.out.println("Введите уравнение (по типу x^2 + x - 3):");
+        String equation = sc.nextLine();
+
+        double a = 0.0, b = 0.0, epsilon = 0.0;
+        boolean inputValid = true;
+
+        try {
+            System.out.println("Введите a:");
+            a = sc.nextDouble();
+        } catch (Exception ex) {
+            System.out.println("Ошибка при вводе a: " + ex.getMessage());
+            inputValid = false;
+        }
+
+        if (inputValid) {
+            try {
+                System.out.println("Введите b:");
+                b = sc.nextDouble();
+            } catch (Exception ex) {
+                System.out.println("Ошибка при вводе b: " + ex.getMessage());
+                inputValid = false;
+            }
+        }
+
+        if (inputValid) {
+            try {
+                System.out.println("Введите epsilon:");
+                epsilon = sc.nextDouble();
+            } catch (Exception ex) {
+                System.out.println("Ошибка при вводе epsilon: " + ex.getMessage());
+                inputValid = false;
+            }
+        }
+
+        if (inputValid) {
+            TangentMethod.printRoot(equation, a, b, epsilon);
         } else {
             System.out.println("Программа завершена из-за ошибок ввода.");
         }
