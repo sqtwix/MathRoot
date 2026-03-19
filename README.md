@@ -1,18 +1,15 @@
-# MathRoot - Bisection Method for Solving Equations
-# MathRoot - Метод бисекции для решения уравнений
-
-## English
+# MathRoot - Bisection and Chord method for Solving Equations | Метод бисекции и хорд для решения уравнений
 
 ### Description
-MathRoot is a Java application that implements the bisection method for finding roots of mathematical equations. 
+MathRoot is a Java application that implements the bisection/chord method for finding roots of mathematical equations. 
 It uses the exp4j library to parse and evaluate mathematical expressions.
 
 ### Описание 
-MathRoot это приложение на Java, которое находит корень уравнения методом половинного деления (бисекции). 
+MathRoot это приложение на Java, которое находит корень уравнения методом половинного деления (бисекции) и методом хорд. 
 Оно использует exp4j для парсинга строка с уравнением.
 
 ### Features
-- Решает уравнения методом бисекции
+- Решает уравнения методом бисекции/хорд
 - Поддерживает разные математические функции (sin, cos, exp, log, etc.)
 - User-friendly конкольный интерфейс
 - Детализированный и подробный вывод
@@ -30,9 +27,9 @@ MathRoot это приложение на Java, которое находит к
 ### Installation
 1. Clone the repository
 2. Build with Maven:
-   ```bash
-   mvn clean install
-  ```
+```bash
+mvn clean install
+```
   
 3. Usage
 
