@@ -6,8 +6,7 @@ import net.objecthunter.exp4j.ExpressionBuilder;
 public class ChordMethod {
     // Class for findind root of equation by chord method
 
-    public ChordMethod() {
-    }
+    public ChordMethod() { }
 
     public static void printRoot(String equation, double a, double b, double epsilon) {
         equation = equation.replace(',', '.');
@@ -73,7 +72,7 @@ public class ChordMethod {
                 x = b - fb * (b - a) / (fb - fa);
             } else if (fixed.equals("b")) {
                 // фиксирована точка b → хорда от b к a
-                x = a - fa * (b - a) / (fb- fa);
+                x = a - fa * (b - a) / (fb - fa);
             } else {
                 // первая итерация — без фиксированной точки, берём любую
                 x = b - fb * (b - a) / (fb - fa);
