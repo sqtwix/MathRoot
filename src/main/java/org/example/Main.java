@@ -9,7 +9,8 @@ public class Main {
         System.out.printf("Выберите метод решения: \n" +
                 "1. Метод бисекции \n" +
                 "2. Метод хорд \n" +
-                "3. Метод касательной \n");
+                "3. Метод касательной \n" +
+                "4. Метод Гаусса (СИСТЕМА УРАВНЕНИЙ)\n");
 
         System.out.print("Ваш выбор: ");
 
@@ -33,12 +34,16 @@ public class Main {
 
             case 3:
                 tangentSolving();
+                break;
+
+            case 4:
+                GaussMethod.solve();
+                break;
 
             default:
                 System.out.println("ERROR. invalid input");
                 break;
         }
-
         sc.close();
     }
 
